@@ -1,0 +1,13 @@
+package com.cloudbees.train.receipt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TrainReceiptApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(TrainReceiptApplication.class, args);
+    }
+
+}
