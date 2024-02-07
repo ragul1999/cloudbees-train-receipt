@@ -12,3 +12,8 @@
 - An API that lets you view the users and seat they are allocated by the requested section
 - An API to remove a user from the train
 - An API to modify a user's seat
+
+
+### sample postman payload
+
+[Collection v2.1](https://github.com/ragul1999/cloudbees-train-receipt/blob/main/CloudBees.postman_collection.json)
