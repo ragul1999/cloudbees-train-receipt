@@ -40,25 +40,25 @@ public class TrainReceiptController {
     }
 
     @GetMapping("/{section}/seat-allocations")
-    public ResponseEntity<List<SeatAllocationDTO>> getReceiptByUserId(@PathVariable String section){
+    public ResponseEntity<List<SeatAllocationDTO>> getSeatAllocationBySection(@PathVariable String section){
         List<SeatAllocationDTO> seatAllocations = trainReceiptService.seatAllocationDetailsBySection(section);
         return seatAllocations.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(seatAllocations);
     }
 
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<String> removePassenger(@PathVariable Integer userId){
-        Optional<TrainReceipt> trainReceipt = trainReceiptService.findById(userId);
+    @DeleteMapping("/{userReceiptId}")
+    public ResponseEntity<String> removePassenger(@PathVariable Integer userReceiptId){
+        Optional<TrainReceipt> trainReceipt = trainReceiptService.findById(userReceiptId);
         if(trainReceipt.isEmpty()){
             return ResponseEntity.unprocessableEntity().body("Passenger id does not exist");
         }
-        trainReceiptService.remove(userId);
+        trainReceiptService.remove(userReceiptId);
         return ResponseEntity.ok("Passenger removed successfully");
     }
 
-    @PatchMapping("/{userId}/seat")
-    public ResponseEntity<String> updateSeat(@PathVariable Integer userId, @RequestBody SeatDTO seat){
+    @PatchMapping("/{userReceiptId}/seat")
+    public ResponseEntity<String> updateSeat(@PathVariable Integer userReceiptId, @RequestBody SeatDTO seat){
         try {
-            trainReceiptService.updateSeatNumber(userId, seat);
+            trainReceiptService.updateSeatNumber(userReceiptId, seat);
         }catch (UserNotFoundException e){
             return ResponseEntity.unprocessableEntity().body(e.getMessage());
         }
