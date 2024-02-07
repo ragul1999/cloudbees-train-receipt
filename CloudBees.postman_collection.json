@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "27b5f63c-6f63-4dbe-b966-9c698b2e0fff",
+		"name": "CloudBees",
+		"description": "Train Receipt end points",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24808530",
+		"_collection_link": "https://kernel-optimization.postman.co/workspace/Res-workspace~abe4ce8f-720f-428f-a83f-aa51e837ff18/collection/24808530-27b5f63c-6f63-4dbe-b966-9c698b2e0fff?action=share&source=collection_link&creator=24808530"
+	},
+	"item": [
+		{
+			"name": "create receipt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fromStation\": \"London\",\r\n    \"toStation\": \"France\",\r\n    \"passenger\": {\r\n        \"id\": 1,\r\n        \"firstName\": \"Test\",\r\n        \"lastName\": \"user\",\r\n        \"email\": \"testemail@yopmail.com\"\r\n    },\r\n    \"price\": 5,\r\n    \"currencyCode\": \"$\",\r\n    \"seatNumber\": 5,\r\n    \"section\": \"A\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/train-receipt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"train-receipt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "receipt of a user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/train-receipt/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"train-receipt",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seat allocation by section",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/train-receipt/A/seat-allocations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"train-receipt",
+						"A",
+						"seat-allocations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user's seat",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"section\": \"B\",\r\n    \"seatNumber\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/train-receipt/2/seat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"train-receipt",
+						"2",
+						"seat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/train-receipt/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"train-receipt",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
