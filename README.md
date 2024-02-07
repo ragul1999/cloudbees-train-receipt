@@ -16,4 +16,4 @@
 
 ### sample postman payload
 
-[Collection v2.1](https://github.com/ragul1999/cloudbees-train-receipt/blob/main/CloudBees.postman_collection.json)
+- [Import postman collection v2.1 here](https://github.com/ragul1999/cloudbees-train-receipt/blob/main/CloudBees.postman_collection.json)
