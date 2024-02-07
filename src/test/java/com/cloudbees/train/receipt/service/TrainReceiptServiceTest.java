@@ -48,16 +48,12 @@ public class TrainReceiptServiceTest {
     }
 
     @Test
-    void given_invalidUserId_when_remove_then_shouldNotRemove(){
-        trainReceiptService.save(getTraineeReceipt());
-        int beforeSize = trainReceiptService.findAll().size();
-        trainReceiptService.remove(0);
-        int afterSize = trainReceiptService.findAll().size();
-        Assertions.assertEquals(beforeSize, afterSize);
+    void given_invalidUserId_when_remove_then_shouldThrowException() {
+        Assertions.assertThrows(UserNotFoundException.class, () -> trainReceiptService.remove(0));
     }
 
     @Test
-    void given_validUserId_when_remove_then_shouldRemove(){
+    void given_validUserId_when_remove_then_shouldRemove() throws UserNotFoundException {
         TrainReceipt receipt = getTraineeReceipt();
         trainReceiptService.save(receipt);
         int beforeSize = trainReceiptService.findAll().size();

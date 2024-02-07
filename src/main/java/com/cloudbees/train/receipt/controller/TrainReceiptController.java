@@ -33,9 +33,9 @@ public class TrainReceiptController {
         return ResponseEntity.ok(savedReceipt);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<TrainReceipt> getReceiptByUserId(@PathVariable Integer userId){
-        Optional<TrainReceipt> receipt = trainReceiptService.findById(userId);
+    @GetMapping("/{userReceiptId}")
+    public ResponseEntity<TrainReceipt> getReceiptById(@PathVariable Integer userReceiptId){
+        Optional<TrainReceipt> receipt = trainReceiptService.findById(userReceiptId);
         return receipt.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
@@ -47,11 +47,11 @@ public class TrainReceiptController {
 
     @DeleteMapping("/{userReceiptId}")
     public ResponseEntity<String> removePassenger(@PathVariable Integer userReceiptId){
-        Optional<TrainReceipt> trainReceipt = trainReceiptService.findById(userReceiptId);
-        if(trainReceipt.isEmpty()){
-            return ResponseEntity.unprocessableEntity().body("Passenger id does not exist");
+        try {
+            trainReceiptService.remove(userReceiptId);
+        }catch (UserNotFoundException e) {
+            return ResponseEntity.unprocessableEntity().body(e.getMessage());
         }
-        trainReceiptService.remove(userReceiptId);
         return ResponseEntity.ok("Passenger removed successfully");
     }
 

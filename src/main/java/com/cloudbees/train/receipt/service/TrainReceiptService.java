@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 public class TrainReceiptService {
@@ -39,7 +40,11 @@ public class TrainReceiptService {
         ).toList();
     }
 
-    public void remove(Integer id){
+    public void remove(Integer id) throws UserNotFoundException {
+        Optional<TrainReceipt> trainReceipt = findById(id);
+        if(trainReceipt.isEmpty()){
+            throw new UserNotFoundException("Passenger id does not exist");
+        }
         trainReceiptMap.remove(id);
     }
 
